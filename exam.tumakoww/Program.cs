@@ -15,41 +15,9 @@ namespace exam.tumakoww
 
     abstract class ArrayAbstract
     {
-        private int _length;
-        public int length
-        {
-            set { _length = value; }
-            get { return _length; }
-        }
+        protected int[] mas;
+        private int length { get; set; }
 
-
-        public ArrayAbstract(int length)
-        {
-            this.length = length;
-        }
-
-        public abstract void BibbleSort();
-
-
-
-        public static implicit operator int(ArrayAbstract v)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static implicit operator ArrayAbstract(int v)
-        {
-            throw new NotImplementedException();
-        }
-
-
-
-    }
-
-    class Realis : ArrayAbstract
-    {
-       
-        public int[] mas;
 
         public int this[int index]
         {
@@ -57,12 +25,24 @@ namespace exam.tumakoww
             get { return mas[index]; }
         }
 
-        public Realis(int[] mas, int length) : base(length)
+        public ArrayAbstract(int length)
         {
+            this.length = length;
+            int[] mas = new int[length];
             this.mas = mas;
         }
 
-        public override void BibbleSort()
+        public abstract void Sort();
+
+    }
+
+    class BubbleSort : ArrayAbstract
+    {
+        public BubbleSort(int length) : base(length)
+        {
+        }
+
+        public override void Sort()
         {
             int temp;
            
@@ -79,7 +59,7 @@ namespace exam.tumakoww
                     }
                 }
             }
-            Console.WriteLine(mas);
+            
         }
 
        class Program
@@ -87,8 +67,11 @@ namespace exam.tumakoww
 
             static void Main(string[] args)
             {
-                Realis realis = new Realis(new[] {3, 2}, 2);
-                Console.WriteLine(realis.BibbleSort);
+                BubbleSort realis = new BubbleSort(2);
+                realis[0] = 3;
+                realis[1] = 1;
+                realis.Sort();
+                Console.WriteLine(realis[0].ToString(), realis[1].ToString());
             }
         }
         
