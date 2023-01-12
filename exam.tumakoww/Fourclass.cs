@@ -1,43 +1,70 @@
-﻿using System;
+﻿//Напишите программу, в которой есть базовый класс с защищенным целочисленным массивом,
+//индексатором (с целочисленным индексом), позволяющим считывать и присваивать значения
+//элементам массива, а также свойство, возвращающее результатом размер массива.
+//На основе базового класса создается производный класс, у которого появляется защищенный символьный массив.
+//Опишите в производном классе версию индексатора с символьным индексом, который возвращает значение
+//элемента символьного массива и позволяет присвоить значение элементу символьного массива.
+//Для свойства из базового класса необходимо выполнить замещение так,
+//чтобы результатом возвращался целочисленный массив из двух элементов:
+//первый элемент определяет размер целочисленного массива объекта,
+//а второй элемент определяет размер символьного массива объекта
+
+
+
+using System;
 namespace exam.tumakoww
 {
 	public class Fourclass
 	{
-		private int[] array { get; set; }
+        public int this[int index]
+        {
+            set { array[index] = value; }
+            get { return array[index]; }
+        }
+
+        protected int[] array
+		{
+			set { }
+			get
+			{
+				
+
+				
+			}
+		}
+
 
 		public Fourclass(int[] array)
 		{
+
 			this.array = array;
+
 		}
 
-		public int this[int index]
-		{
-			set { array[index] = value; }
-			get { return array[index]; }
-		}
-
-		public int GetResult(int[] array)
-		{
-			return array.Length;
-		}
 		
 	}
 
 
-	public class Derivedclass
+	public class Derivedclass : Fourclass
 	{
-		private char[] mass { get; set; }
+		protected char[] mass
+		{
+			set { }
+			get { return mass; }
+		}
 
-		public Derivedclass(char[] mass)
+		public Derivedclass(char[] mass,int[] array) : base(array)
 		{
 			this.mass = mass;
 		}
 
-        public char this[char index]
+        public char this[char index]   
         {
             set { mass[index] = value; }
             get { return mass[index]; }
         }
+
+		
     }
 }
 

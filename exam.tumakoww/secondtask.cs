@@ -15,18 +15,13 @@ namespace exam.tumakoww
 
 		public abstract int this[int index] { get; set; }
 		
-
-		
 	}
-
 
 
 	interface Iinterface
 	{
 		public int method_1(int c);
 	}
-
-
 
 
 	class Deal : Secondtask, Iinterface
